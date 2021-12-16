@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{91D9DC4A-C82F-482B-BEA1-7B23DCC7D242}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TestTrack</RootNamespace>
+    <AssemblyName>TestTrack</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LOGOpicSqiconbackground.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.MSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AxInterop.MSTSCLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxMSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AxMSTSCLib.1.0.1\lib\net40\AxMSTSCLib.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2020.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2020.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonNet.ContractResolvers, Version=1.1.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JsonNet.ContractResolvers.1.1.0\lib\netstandard2.0\JsonNet.ContractResolvers.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=3.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.3.7.0\lib\netstandard2.0\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=3.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.3.7.0\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Scripting, Version=3.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Scripting.3.7.0\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Scripting, Version=3.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Scripting.Common.3.7.0\lib\netstandard2.0\Microsoft.CodeAnalysis.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Http, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Http.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
+    <Reference Include="MSTSCLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AxMSTSCLib.1.0.1\lib\net40\MSTSCLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RentDynamics.RdClient, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RentDynamics.RdClient.0.1.0\lib\netstandard2.0\RentDynamics.RdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.6.0\lib\netstandard2.0\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.TypeExtensions.4.5.1\lib\net461\System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.5.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alpha_Engineer.cs" />
+    <Compile Include="Alpha_Guest.cs" />
+    <Compile Include="Alpha_Tech.cs" />
+    <Compile Include="Async_Main_Search_DatabaseData.cs" />
+    <Compile Include="BayLoadGraph.cs" />
+    <Compile Include="BayOverview_LoadBaysList.cs" />
+    <Compile Include="BayProportionGraph.cs" />
+    <Compile Include="CCDDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CCDDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BayOverview_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BayOverview_Report.Designer.cs">
+      <DependentUpon>Form_BayOverview_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BayView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BayView.Designer.cs">
+      <DependentUpon>Form_BayView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Excel.cs" />
+    <Compile Include="Form_BayView_Simple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BayView_Simple.Designer.cs">
+      <DependentUpon>Form_BayView_Simple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BsnGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BsnGenerator.Designer.cs">
+      <DependentUpon>Form_BsnGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ConnectionIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ConnectionIssue.Designer.cs">
+      <DependentUpon>Form_ConnectionIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Login.Designer.cs">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Collector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Collector.Designer.cs">
+      <DependentUpon>Form_Collector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BayView_FHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BayView_FHD.Designer.cs">
+      <DependentUpon>Form_BayView_FHD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Order.Designer.cs">
+      <DependentUpon>Form_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_PasswordTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PasswordTable.Designer.cs">
+      <DependentUpon>Form_PasswordTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Report.Designer.cs">
+      <DependentUpon>Form_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SavedSn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SavedSn.Designer.cs">
+      <DependentUpon>Form_SavedSn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SwitchloggerReset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SwitchloggerReset.Designer.cs">
+      <DependentUpon>Form_SwitchloggerReset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_TDS_Progress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_TDS_Progress.Designer.cs">
+      <DependentUpon>Form_TDS_Progress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Tool_CUZImageCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Tool_CUZImageCheck.Designer.cs">
+      <DependentUpon>Form_Tool_CUZImageCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListNDictiomary.cs" />
+    <Compile Include="Declare.cs" />
+    <Compile Include="Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL_Basic.cs" />
+    <Compile Include="SQL_Tracker.cs" />
+    <Compile Include="SwitchloggerReset.cs" />
+    <EmbeddedResource Include="Form_BayOverview_Report.resx">
+      <DependentUpon>Form_BayOverview_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BayView.resx">
+      <DependentUpon>Form_BayView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BayView_Simple.resx">
+      <DependentUpon>Form_BayView_Simple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BsnGenerator.resx">
+      <DependentUpon>Form_BsnGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ConnectionIssue.resx">
+      <DependentUpon>Form_ConnectionIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Login.resx">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Collector.resx">
+      <DependentUpon>Form_Collector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BayView_FHD.resx">
+      <DependentUpon>Form_BayView_FHD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Order.resx">
+      <DependentUpon>Form_Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PasswordTable.resx">
+      <DependentUpon>Form_PasswordTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Report.resx">
+      <DependentUpon>Form_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SavedSn.resx">
+      <DependentUpon>Form_SavedSn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SwitchloggerReset.resx">
+      <DependentUpon>Form_SwitchloggerReset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_TDS_Progress.resx">
+      <DependentUpon>Form_TDS_Progress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Tool_CUZImageCheck.resx">
+      <DependentUpon>Form_Tool_CUZImageCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="CCDDataSet.xsc">
+      <DependentUpon>CCDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CCDDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CCDDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CCDDataSet.xss">
+      <DependentUpon>CCDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\MC1.BayLoadGraph.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Výstřižek.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGOnew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGOnew2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGOpicSqiconbackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LOGOpicSqiconbackground.ico" />
+    <None Include="Resources\BV_Ico_MFI_OP.png" />
+    <None Include="Resources\BV_Ico_SmartCard_OP.png" />
+    <None Include="Resources\BV_gif_MfiPassToAdler3.gif" />
+    <None Include="Resources\BV_Ico_SmartCard_FHD.png" />
+    <None Include="Resources\BV_gif_PassToAdler3.gif" />
+    <None Include="Resources\BV_Ico_MFI_FHD.png" />
+    <None Include="Resources\saveitMFI.png" />
+    <None Include="Resources\pika2.gif" />
+    <None Include="Resources\pika.gif" />
+    <None Include="Resources\connectivityissues_drib.gif" />
+    <None Include="Resources\BV_gif_AdlerToEmpty_OP2.gif" />
+    <None Include="Resources\BV_gif_AdlerToEmpty_OP1.gif" />
+    <None Include="Resources\BV_gif_PassToAdler_OP1.gif" />
+    <None Include="Resources\NoHipot2_OP.png" />
+    <None Include="Resources\BV_Ico_RemoveCD_OP.png" />
+    <None Include="Resources\BV_Ico_P7_OP.png" />
+    <None Include="Resources\BV_Ico_P6_OP.png" />
+    <None Include="Resources\BV_Ico_P5_OP.png" />
+    <None Include="Resources\BV_Ico_P4_OP.png" />
+    <None Include="Resources\BV_Ico_P3_OP.png" />
+    <None Include="Resources\BV_Ico_P2_OP.png" />
+    <None Include="Resources\BV_Ico_P1_OP.png" />
+    <None Include="Resources\BV_Ico_P0_OP.png" />
+    <None Include="Resources\BV_Ico_InsertCD_OP.png" />
+    <None Include="Resources\BV_Ico_BiosFlash_OP.png" />
+    <None Include="Resources\BV_Ico_AudioTest_OP.png" />
+    <None Include="Resources\BW62.png" />
+    <None Include="Resources\BW61.png" />
+    <None Include="Resources\BW6.png" />
+    <None Include="Resources\BV_gif_AdlerToEmpty4.gif" />
+    <None Include="Resources\BV_gif_PassToAdler21.gif" />
+    <None Include="Resources\BV_gif_AdlerToEmpty2.gif" />
+    <None Include="Resources\tests.gif" />
+    <None Include="Resources\excel_in.png" />
+    <None Include="Resources\SOP_in.png" />
+    <None Include="Resources\remote2_in.png" />
+    <None Include="Resources\puzzle3_in.png" />
+    <None Include="Resources\FIS_in.png" />
+    <None Include="Resources\FIS.png" />
+    <None Include="Resources\201_b_in.png" />
+    <None Include="Resources\remote2.png" />
+    <None Include="Resources\BW52.png" />
+    <None Include="Resources\BW51.png" />
+    <None Include="Resources\BW5.png" />
+    <None Include="Resources\BV_gif_PassToAdler2.gif" />
+    <None Include="Resources\BV_gif_PassToAdler.gif" />
+    <None Include="Resources\BV_gif_AdlerToEmpty.gif" />
+    <None Include="Resources\testICOdel1.png" />
+    <None Include="Resources\BV_Ico_RemoveCD_FHD.png" />
+    <None Include="Resources\BV_Ico_P7_FHD.png" />
+    <None Include="Resources\BV_Ico_P6_FHD.png" />
+    <None Include="Resources\BV_Ico_P5_FHD.png" />
+    <None Include="Resources\BV_Ico_P4_FHD.png" />
+    <None Include="Resources\BV_Ico_P3_FHD.png" />
+    <None Include="Resources\BV_Ico_P2_FHD.png" />
+    <None Include="Resources\BV_Ico_P1_FHD.png" />
+    <None Include="Resources\BV_Ico_P0_FHD.png" />
+    <None Include="Resources\BV_Ico_InsertCD_FHD.png" />
+    <None Include="Resources\BV_Ico_BiosFlash_FHD.png" />
+    <None Include="Resources\BV_Ico_AudioTest_FHD.png" />
+    <None Include="Resources\testICOdel.png" />
+    <None Include="Resources\BIOS1_in.png" />
+    <None Include="Resources\M4U_in.png" />
+    <None Include="Resources\M4U.png" />
+    <None Include="Resources\working2.gif" />
+    <None Include="Resources\BW4.png" />
+    <None Include="Resources\loading1.gif" />
+    <None Include="Resources\AudioTest2_PCK.png" />
+    <None Include="Resources\RemoveCD2_PCK.png" />
+    <None Include="Resources\InsertCD2_PCK.png" />
+    <None Include="Resources\AudioTest_PCK.png" />
+    <None Include="Resources\BiosFlash_PCK.png" />
+    <None Include="Resources\RemoveCD_PCK.png" />
+    <None Include="Resources\NoHipot_PCK.png" />
+    <None Include="Resources\InsertCD_PCK.png" />
+    <None Include="Resources\BiosFlash2_FHD.png" />
+    <None Include="Resources\NoHipot2_FHD.png" />
+    <None Include="Resources\BiosFlash_FHD.png" />
+    <None Include="Resources\AudioTest_FHD.png" />
+    <None Include="Resources\RemoveCD_FHD.png" />
+    <None Include="Resources\InsertCD_FHD.png" />
+    <None Include="Resources\NoHipot_FHD.png" />
+    <None Include="Resources\problem_Audio_pocket.png" />
+    <None Include="Resources\problem_Audio.png" />
+    <None Include="Resources\problem_CDOUT_pocket.png" />
+    <None Include="Resources\problem_CDIN_pocket.png" />
+    <None Include="Resources\problem_noHipotPocket2.png" />
+    <None Include="Resources\problem_noHipotPocket1.png" />
+    <None Include="Resources\problem_insert.png" />
+    <None Include="Resources\problem_out2.png" />
+    <None Include="Resources\problem_out.png" />
+    <None Include="Resources\problem_noHipot5.png" />
+    <None Include="Resources\problem_noHipot4.png" />
+    <None Include="Resources\problem_noHipot3.png" />
+    <None Include="Resources\problem_noHipot2.png" />
+    <None Include="Resources\problem_noHipot.png" />
+    <None Include="Resources\BW3x.png" />
+    <None Include="Resources\BW31.png" />
+    <None Include="Resources\puzzle3.png" />
+    <None Include="Resources\msgWide.png" />
+    <None Include="Resources\infoWide2.png" />
+    <None Include="Resources\locateWide21.png" />
+    <None Include="Resources\locateWide2.png" />
+    <None Include="Resources\toolsWide.png" />
+    <None Include="Resources\msgN.png" />
+    <None Include="Resources\info1.png" />
+    <None Include="Resources\locate2.png" />
+    <None Include="Resources\toolsN.png" />
+    <None Include="Resources\tools.png" />
+    <None Include="Resources\Troubleshooting.png" />
+    <None Include="Resources\BIOS1.png" />
+    <None Include="Resources\201_b.png" />
+    <None Include="Resources\SOP.png" />
+    <None Include="Resources\loadingBW.gif" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\web.png" />
+    <None Include="Resources\remote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\build\Microsoft.CodeAnalysis.Analyzers.targets')" />
+</Project>
