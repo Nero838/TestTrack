@@ -100,9 +100,9 @@ namespace MC1
             }
             else
             {
-                string path = @"\\10.13.82.8\comm_uut\ORDERDATABSN\" + MbPN + @"\" + MbSN + ".txt";
+                string path = @"\\10.13.82.5\comm_uut\ORDERDATABSN\" + MbPN + @"\" + MbSN + ".txt";
                 labelStatus.Text = string.Format("Generating {0} in {1}.txt inside {2} folder", unitSN, MbSN, MbPN);
-                if (Directory.Exists(@"\\10.13.82.8\comm_uut\ORDERDATABSN\" + MbPN))
+                if (Directory.Exists(@"\\10.13.82.5\comm_uut\ORDERDATABSN\" + MbPN))
                 {
                     using (var streamWriter = new StreamWriter(path, false))
                     {
@@ -112,8 +112,8 @@ namespace MC1
                 }
                 else
                 {
-                    Directory.CreateDirectory(@"\\10.13.82.8\comm_uut\ORDERDATABSN\" + MbPN);
-                    if (Directory.Exists(@"\\10.13.82.8\comm_uut\ORDERDATABSN\" + MbPN))
+                    Directory.CreateDirectory(@"\\10.13.82.5\comm_uut\ORDERDATABSN\" + MbPN);
+                    if (Directory.Exists(@"\\10.13.82.5\comm_uut\ORDERDATABSN\" + MbPN))
                     {
                         using (var streamWriter = new StreamWriter(path, false))
                         {

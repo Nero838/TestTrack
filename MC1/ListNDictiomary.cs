@@ -10,7 +10,7 @@ namespace MC1
     public abstract class ListNDictiomary : SQL_Tracker
     {
         //property private set
-        public string userName { get; private set; }
+        public string userName { get; set; }
         public string appVersion { get; private set; }
         public string accessLevel { get; private set; }
         //property public set
@@ -39,6 +39,7 @@ namespace MC1
         public readonly List<string> ListSaverTechs = new List<string>();
         public readonly List<string> PSEXEC_files = new List<string>();
         public readonly List<string> Updater_files = new List<string>();
+        public readonly List<string> ListModelPrefix = new List<string>();
 
 
         public readonly List<string> ListBaysButtons = new List<string> ();
@@ -231,26 +232,26 @@ namespace MC1
             DictLogTypeSuffix.Add("60P", ".60P");
             DictLogTypeSuffix.Add("60T", ".60T");
 
-            DictServerIPs.Add("L1", @"\\10.13.82.2\");
-            DictServerIPs.Add("L2", @"\\10.13.82.3\");
-            DictServerIPs.Add("L3", @"\\10.13.82.4\");
-            DictServerIPs.Add("LAB", @"\\10.13.82.200\");
-            DictServerIPs.Add("L8", @"\\10.13.82.8\");
-            DictServerIPs.Add("L10", @"\\10.13.82.10\");
+            DictServerIPs.Add("L1", @"\\10.13.82.1\");
+            DictServerIPs.Add("L2", @"\\10.13.82.2\");
+            DictServerIPs.Add("L3", @"\\10.13.82.3\");
+            DictServerIPs.Add("L4", @"\\10.13.82.4\");
+            DictServerIPs.Add("L5", @"\\10.13.82.5\");
+            DictServerIPs.Add("L6", @"\\10.13.82.6\");
 
-            DictServerIPsClear.Add("L1", "10.13.82.2");
-            DictServerIPsClear.Add("L2", "10.13.82.3");
-            DictServerIPsClear.Add("L3", "10.13.82.4");
-            DictServerIPsClear.Add("LAB", "10.13.82.200");
-            DictServerIPsClear.Add("L8", "10.13.82.8");
-            DictServerIPsClear.Add("L10", "10.13.82.10");
+            DictServerIPsClear.Add("L1", "10.13.82.1");
+            DictServerIPsClear.Add("L2", "10.13.82.2");
+            DictServerIPsClear.Add("L3", "10.13.82.3");
+            DictServerIPsClear.Add("L4", "10.13.82.4");
+            DictServerIPsClear.Add("L5", "10.13.82.5");
+            DictServerIPsClear.Add("L6", "10.13.82.6");
 
             DictServerNames.Add("L1", "Lineahead 1");
             DictServerNames.Add("L2", "Lineahead 2");
             DictServerNames.Add("L3", "Lineahead 3");
-            DictServerNames.Add("LAB", "LAB");
-            DictServerNames.Add("L8", "Lineahead 8");
-            DictServerNames.Add("L10", "Lineahead 10");
+            DictServerNames.Add("L4", "Lineahead 4");
+            DictServerNames.Add("L5", "Lineahead 5");
+            DictServerNames.Add("L6", "Lineahead 6");
 
             //DictServerLines.Add("L1", "Line 1");
             //DictServerLines.Add("L2", "Line 2/3");
@@ -286,19 +287,32 @@ namespace MC1
             ModelsDataTable = new DataTable();
             ModelsDataTable = GetModelData();
 
+            //Model data LVL2: Dict from database Datatable
             DictSnModel = ModelsDataTable.AsEnumerable()
-              .ToDictionary<DataRow, string, string>(row => row.Field<string>(0),
-                                        row => row.Field<string>(1));
-
-            DictSnMB = ModelsDataTable.AsEnumerable()
-              .ToDictionary<DataRow, string, string>(row => row.Field<string>(0),
+              .ToDictionary<DataRow, string, string>(row => row.Field<string>(1),
                                         row => row.Field<string>(2));
 
-            //test
-            //string testString = String.Join(",", DictSnModel);
-            //string testString2 = String.Join(",", DictSnMB);
+            DictSnMB = ModelsDataTable.AsEnumerable()
+              .ToDictionary<DataRow, string, string>(row => row.Field<string>(1),
+                                        row => row.Field<string>(3));
 
-            //hardcoded:
+            //Model data LVL3: LINQ:
+            //1. Pomoci .AsEnumerable() můžu prochazet radky
+            //2. Vymezim radek, ktery hledam
+            //3. Vytahnu z radku presnou promennou
+            //Pouzito do funkce GetdataFromModelTable
+            //ALTERNATIVA KDYZ NE PRES LINQ -> ListModelPrefix = ModelsDataTable.AsEnumerable().Select(x => x[1].ToString()).ToList();
+
+            ListModelPrefix = ModelsDataTable.AsEnumerable()
+            .Select(r => r.Field<string>("Prefix"))
+            .ToList();
+            //ALTERNATIVA KDYZ NE PRES LINQ -> ListModelPrefix = ModelsDataTable.AsEnumerable().Select(x => x[1].ToString()).ToList();
+
+            //var dataRow = ModelsDataTable.AsEnumerable().Where(x => x.Field<string>("Prefix") == "EIAU").FirstOrDefault();
+            //string testtt = dataRow["MB_SN"].ToString();
+            //Pouzito do funkce GetdataFromModelTable
+
+            //Model data LVL1: hardcoded:
             //DictSnModel.Add("EIAA", "Celsius R970A");
             //DictSnModel.Add("EIAB", "Celsius R970A Power");
             //DictSnModel.Add("EIAH", "Celsius R970B");
@@ -1022,6 +1036,13 @@ namespace MC1
             ListBaysButtons.Add("buttonLINEPRI_Upper_19");
             ListBaysButtons.Add("buttonLINEPRI_Upper_21");
             ListBaysButtons.Add("buttonLINEPRI_Upper_23");
+        }
+
+        public string GetdataFromModelTable(string prefix, string which_data)
+        {
+            var dataRow = ModelsDataTable.AsEnumerable().Where(x => x.Field<string>("Prefix") == prefix).FirstOrDefault();
+            string returnValue = dataRow[which_data].ToString();
+            return returnValue;
         }
 
         public Dictionary<string, string> GetDict(DataTable dt)

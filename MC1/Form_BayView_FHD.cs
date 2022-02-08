@@ -53,6 +53,7 @@ namespace MC1
 
         private int totalBays;
         private List<Button> ListBaysButtons = new List<Button>();
+        private List<string> ListOfPhases = new List<string>();
         private Dictionary<string,Button> DictionaryBaysButtons = new Dictionary<string, Button>();
         //private Dictionary<string, string> DictionaryBaysOccupation = BayOverview_LoadBaysList.LoadList_BayPositions();
 
@@ -1538,130 +1539,129 @@ namespace MC1
                 {
                     TimeSpan TestTimeDelta = currentTime - TestTime;
                     TimeSpan PhaseTimeDelta = currentTime - PhaseTime;
-                    if (TestTimeDelta > maxTestTime)
+                    //if (TestTimeDelta > maxTestTime)
+                    //{
+                    //    ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                    //}
+                    //else
+                    //{
+                    if (BAY_Phase == "0")
                     {
-                        ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                        if (PhaseTimeDelta > maxPhase0Time)
+                        {
+                            ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                            MarkPosition(BAY_Position, "P0", BAY_SNO);
+                        }
+                        else
+                        {
+                            ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
+                            MarkPosition(BAY_Position, "P0", BAY_SNO);
+                        }
                     }
-                    else
+                    if (BAY_Phase == "1")
                     {
-                        if (BAY_Phase == "0")
+                        if (PhaseTimeDelta > maxPhase1Time)
                         {
-                            if (PhaseTimeDelta > maxPhase0Time)
+                            ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                            MarkPosition(BAY_Position, "P1", BAY_SNO);
+                        }
+                        else
+                        {
+                            ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
+                            MarkPosition(BAY_Position, "P1", BAY_SNO);
+                        }
+                    }
+                    if (BAY_Phase == "2")
+                    {
+                        if (PhaseTimeDelta > maxPhase2Time)
+                        {
+                            ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                            MarkPosition(BAY_Position, "P2", BAY_SNO);
+                        }
+                        else
+                        {
+                            ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
+                            MarkPosition(BAY_Position, "P2", BAY_SNO);
+                        }
+                    }
+                    if (BAY_Phase == "3")
+                    {
+                        if (PhaseTimeDelta > maxPhase3Time)
+                        {
+                            ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                            MarkPosition(BAY_Position, "P3", BAY_SNO);
+                        }
+                        else
+                        {
+                            ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
+                            MarkPosition(BAY_Position, "P3", BAY_SNO);
+                        }
+                    }
+                    if (BAY_Phase == "4")
+                    {
+                        if (PhaseTimeDelta > maxPhase4Time)
+                        {
+                            ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                            MarkPosition(BAY_Position, "P4", BAY_SNO);
+                        }
+                        else
+                        {
+                            ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
+                            MarkPosition(BAY_Position, "P4", BAY_SNO);
+                        }
+                    }
+                    if (BAY_Phase == "5")
+                    {
+                        if (PhaseTimeDelta > maxPhase5Time)
+                        {
+                            ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                            MarkPosition(BAY_Position, "P5", BAY_SNO);
+                        }
+                        else
+                        {
+                            ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
+                            MarkPosition(BAY_Position, "P5", BAY_SNO);
+                        }
+                    }
+                    if (BAY_Phase == "6")
+                    {
+                        if (PhaseTimeDelta > maxPhase6Time)
+                        {
+                            ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
+                            MarkPosition(BAY_Position, "P6", BAY_SNO);
+                        }
+                        else
+                        {
+                            ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
+                            MarkPosition(BAY_Position, "P6", BAY_SNO);
+                        }
+                    }
+                    if (BAY_Phase == "7")
+                    {
+                        if (PartStatus == "ADL_MFI")
+                        {
+                            if (PhaseTimeDelta > maxPhaseMfiTime)
                             {
                                 ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                MarkPosition(BAY_Position, "P0", BAY_SNO);
+                                MarkPosition(BAY_Position, "MFI", BAY_SNO);
                             }
                             else
                             {
                                 ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                MarkPosition(BAY_Position, "P0", BAY_SNO);
+                                MarkPosition(BAY_Position, "MFI", BAY_SNO);
                             }
                         }
-                        if (BAY_Phase == "1")
+                        else
                         {
-                            if (PhaseTimeDelta > maxPhase1Time)
+                            if (PhaseTimeDelta > maxPhase7Time)
                             {
                                 ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                MarkPosition(BAY_Position, "P1", BAY_SNO);
+                                MarkPosition(BAY_Position, "P7", BAY_SNO);
                             }
                             else
                             {
                                 ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                MarkPosition(BAY_Position, "P1", BAY_SNO);
-                            }
-                        }
-                        if (BAY_Phase == "2")
-                        {
-                            if (PhaseTimeDelta > maxPhase2Time)
-                            {
-                                ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                MarkPosition(BAY_Position, "P2", BAY_SNO);
-                            }
-                            else
-                            {
-                                ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                MarkPosition(BAY_Position, "P2", BAY_SNO);
-                            }
-                        }
-                        if (BAY_Phase == "3")
-                        {
-                            if (PhaseTimeDelta > maxPhase3Time)
-                            {
-                                ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                MarkPosition(BAY_Position, "P3", BAY_SNO);
-                            }
-                            else
-                            {
-                                ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                MarkPosition(BAY_Position, "P3", BAY_SNO);
-                            }
-                        }
-                        if (BAY_Phase == "4")
-                        {
-                            if (PhaseTimeDelta > maxPhase4Time)
-                            {
-                                ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                MarkPosition(BAY_Position, "P4", BAY_SNO);
-                            }
-                            else
-                            {
-                                ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                MarkPosition(BAY_Position, "P4", BAY_SNO);
-                            }
-                        }
-                        if (BAY_Phase == "5")
-                        {
-                            if (PhaseTimeDelta > maxPhase5Time)
-                            {
-                                ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                MarkPosition(BAY_Position, "P5", BAY_SNO);
-                            }
-                            else
-                            {
-                                ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                MarkPosition(BAY_Position, "P5", BAY_SNO);
-                            }
-                        }
-                        if (BAY_Phase == "6")
-                        {
-                            if (PhaseTimeDelta > maxPhase6Time)
-                            {
-                                ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                MarkPosition(BAY_Position, "P6", BAY_SNO);
-                            }
-                            else
-                            {
-                                ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                MarkPosition(BAY_Position, "P6", BAY_SNO);
-                            }
-                        }
-                        if (BAY_Phase == "7")
-                        {
-                            if (PartStatus == "ADL_MFI")
-                            {
-                                if (PhaseTimeDelta > maxPhaseMfiTime)
-                                {
-                                    ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                    MarkPosition(BAY_Position, "MFI", BAY_SNO);
-                                }
-                                else
-                                {
-                                    ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                    MarkPosition(BAY_Position, "MFI", BAY_SNO);
-                                }
-                            }
-                            else
-                            {
-                                if (PhaseTimeDelta > maxPhase7Time)
-                                {
-                                    ColorPosition(BAY_Position, "PROBLEM", BAY_SNO);
-                                    MarkPosition(BAY_Position, "P7", BAY_SNO);
-                                }
-                                else
-                                {
-                                    ColorPosition(BAY_Position, BAY_Status, BAY_SNO);
-                                    MarkPosition(BAY_Position, "P7", BAY_SNO);
-                                }
+                                MarkPosition(BAY_Position, "P7", BAY_SNO);
                             }
                         }
                     }

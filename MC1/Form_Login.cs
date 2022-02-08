@@ -31,7 +31,7 @@ namespace MC1
             needUpdate = true;
             this.SQL = new SQL_Tracker();
             this._userName = GetUserName();
-            this._programVersion = "2.5.3";
+            this._programVersion = "2.5.5";
             this.TEs = new List<string>() { "ICZ198022", "ICZ198023", "ICZ208110", "ICZ208054", "ICZ200477", "ICZ160120", "ICZ208427", "ICZ218016" };
             //EnterDungeonTest();
             InitializeComponent();

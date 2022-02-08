@@ -165,7 +165,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(784, 561);
+            this.tabControl1.Size = new System.Drawing.Size(984, 561);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage4
@@ -173,7 +173,7 @@
             this.tabPage4.Controls.Add(this.panelModels);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(776, 535);
+            this.tabPage4.Size = new System.Drawing.Size(976, 535);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Models List";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@
             this.panelModels.Location = new System.Drawing.Point(0, 0);
             this.panelModels.Name = "panelModels";
             this.panelModels.Padding = new System.Windows.Forms.Padding(3);
-            this.panelModels.Size = new System.Drawing.Size(776, 535);
+            this.panelModels.Size = new System.Drawing.Size(976, 535);
             this.panelModels.TabIndex = 1;
             // 
             // dataGridViewModel
@@ -198,8 +198,9 @@
             this.dataGridViewModel.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewModel.Name = "dataGridViewModel";
             this.dataGridViewModel.ReadOnly = true;
-            this.dataGridViewModel.Size = new System.Drawing.Size(770, 529);
+            this.dataGridViewModel.Size = new System.Drawing.Size(970, 529);
             this.dataGridViewModel.TabIndex = 0;
+            this.dataGridViewModel.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewModel_CellContentClick);
             // 
             // tabPage1
             // 
@@ -408,11 +409,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.buttonExit;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(800, 300);
+            this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "Form_Order";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Order List";

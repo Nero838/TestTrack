@@ -32,13 +32,15 @@ namespace MC1
             dataGridViewModel.DataSource = _alpha.ModelsDataTable;
 
             dataGridViewModel.Columns[0].Width = (int)(dataGridViewModel.Width * 0.10);
-            dataGridViewModel.Columns[1].Width = (int)(dataGridViewModel.Width * 0.4);
-            dataGridViewModel.Columns[2].Width = (int)(dataGridViewModel.Width * 0.10);
-            dataGridViewModel.Columns[3].Width = (int)(dataGridViewModel.Width * 0.15);
+            dataGridViewModel.Columns[1].Width = (int)(dataGridViewModel.Width * 0.10);
+            dataGridViewModel.Columns[2].Width = (int)(dataGridViewModel.Width * 0.3);
+            dataGridViewModel.Columns[3].Width = (int)(dataGridViewModel.Width * 0.1);
+            dataGridViewModel.Columns[4].Width = (int)(dataGridViewModel.Width * 0.1);
+            dataGridViewModel.Columns[5].Width = (int)(dataGridViewModel.Width * 0.1);
             //dataGridViewModel.Columns[4].Width = (int)(dataGridViewModel.Width * 0.15);
             // also may be a good idea to set FILL for the last column
             // to accomodate the round up in conversions
-            dataGridViewModel.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewModel.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void buttonGetData_Click(object sender, EventArgs e)
@@ -99,6 +101,11 @@ namespace MC1
         private void buttonExitTestStat_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void dataGridViewModel_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

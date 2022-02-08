@@ -16,12 +16,12 @@ namespace MC1
         {
             basicSQL = new SQL_Basic();
             serverUserName = "SwapTech";
-            lineheadLoginPasswords.Add("L1", basicSQL.GetLineaheadPassword("10.13.82.2", "SwapTech"));
-            lineheadLoginPasswords.Add("L2", basicSQL.GetLineaheadPassword("10.13.82.3", "SwapTech"));
-            lineheadLoginPasswords.Add("L3", basicSQL.GetLineaheadPassword("10.13.82.4", "SwapTech"));
-            lineheadLoginPasswords.Add("LAB", basicSQL.GetLineaheadPassword("10.13.82.200", "SwapTech"));
-            lineheadLoginPasswords.Add("L8", basicSQL.GetLineaheadPassword("10.13.82.8", "SwapTech"));
-            lineheadLoginPasswords.Add("L10", basicSQL.GetLineaheadPassword("10.13.82.10", "SwapTech"));
+            lineheadLoginPasswords.Add("L1", basicSQL.GetLineaheadPassword("10.13.82.1", "SwapTech"));
+            lineheadLoginPasswords.Add("L2", basicSQL.GetLineaheadPassword("10.13.82.2", "SwapTech"));
+            lineheadLoginPasswords.Add("L3", basicSQL.GetLineaheadPassword("10.13.82.3", "SwapTech"));
+            lineheadLoginPasswords.Add("L4", basicSQL.GetLineaheadPassword("10.13.82.4", "SwapTech"));
+            lineheadLoginPasswords.Add("L5", basicSQL.GetLineaheadPassword("10.13.82.5", "SwapTech"));
+            lineheadLoginPasswords.Add("L6", basicSQL.GetLineaheadPassword("10.13.82.6", "SwapTech"));
             lineheadLoginPasswords.Add("Storage", basicSQL.GetLineaheadPassword("10.13.82.201", "SwapTech"));
         }
     }

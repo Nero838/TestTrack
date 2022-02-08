@@ -549,7 +549,7 @@ namespace MC1
             try
             {
                 using (SqlConnection myConnection = new SqlConnection(connectionString))
-                using (SqlCommand Command_Get = new SqlCommand("SELECT Prefix,ModelName,MB_SN,Category,Manufactory FROM ICZ_LOCAL..TestTrack_Models", myConnection))
+                using (SqlCommand Command_Get = new SqlCommand("SELECT Live,Prefix,ModelName,MB_SN,Category,Manufactory,ImageLoad FROM ICZ_LOCAL..TestTrack_Models", myConnection))
                 {
                     myConnection.Open();
                     SqlDataReader Reader_Get = Command_Get.ExecuteReader();
@@ -749,7 +749,7 @@ namespace MC1
             try
             {
                 using (SqlConnection myConnection = new SqlConnection(connectionString))
-                using (SqlCommand Command_Get = new SqlCommand("Select Count(Sno) from CCD..SNO where Model in(Select Model from CCD..SNO where Sno='" + SN + "') and (NextWc > '55' or NextWc = '53' or NextWc = '')", myConnection))
+                using (SqlCommand Command_Get = new SqlCommand("Select Count(Sno) from CCD..SNO where Model in(Select Model from CCD..SNO where Sno='" + SN + "') and (NextWc > '60' or NextWc = '53' or NextWc = '')", myConnection))
                 {
                     myConnection.Open();
                     SqlDataReader Reader_Get = await Command_Get.ExecuteReaderAsync();

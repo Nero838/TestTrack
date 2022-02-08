@@ -47,14 +47,14 @@ namespace MC1
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(500, 32);
+            this.panelTop.Size = new System.Drawing.Size(684, 32);
             this.panelTop.TabIndex = 0;
             // 
             // labelUser
             // 
             this.labelUser.AutoSize = true;
             this.labelUser.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelUser.Location = new System.Drawing.Point(490, 0);
+            this.labelUser.Location = new System.Drawing.Point(674, 0);
             this.labelUser.Name = "labelUser";
             this.labelUser.Padding = new System.Windows.Forms.Padding(0, 10, 10, 0);
             this.labelUser.Size = new System.Drawing.Size(10, 23);
@@ -80,7 +80,7 @@ namespace MC1
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBottom.Location = new System.Drawing.Point(0, 32);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(500, 497);
+            this.panelBottom.Size = new System.Drawing.Size(684, 529);
             this.panelBottom.TabIndex = 1;
             // 
             // dataGridView1
@@ -95,7 +95,7 @@ namespace MC1
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(500, 497);
+            this.dataGridView1.Size = new System.Drawing.Size(684, 529);
             this.dataGridView1.TabIndex = 0;
             // 
             // Form_PasswordTable
@@ -103,11 +103,12 @@ namespace MC1
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(500, 529);
+            this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelTop);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "Form_PasswordTable";
             this.Text = "TE Servers Password Table";
             this.Load += new System.EventHandler(this.Form_PasswordTable_Load);

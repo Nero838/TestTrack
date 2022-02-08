@@ -19,6 +19,7 @@ namespace MC1
         private string Index_Clear = "....";
         private string Index_NotFound = "✕";
         private List<string> possibleReMFI = new List<string>();
+        private string firstFour;
         Stopwatch stopWatch = new Stopwatch();
         public Form_Main(ListNDictiomary compositedPolymorphAlpha)
         {
@@ -157,25 +158,25 @@ namespace MC1
                 labelL3Health.Update();
             }
 
-            if (!alpha.ListServers.Contains("LAB"))
+            if (!alpha.ListServers.Contains("L4"))
             {
-                labelLABHealth.Text = "● offline";
-                labelLABHealth.ForeColor = System.Drawing.Color.Red;
-                labelLABHealth.Update();
+                labelL4Health.Text = "● offline";
+                labelL4Health.ForeColor = System.Drawing.Color.Red;
+                labelL4Health.Update();
             }
 
-            if (!alpha.ListServers.Contains("L8"))
+            if (!alpha.ListServers.Contains("L5"))
             {
-                labelL8Health.Text = "● offline";
-                labelL8Health.ForeColor = System.Drawing.Color.Red;
-                labelL8Health.Update();
+                labelL5Health.Text = "● offline";
+                labelL5Health.ForeColor = System.Drawing.Color.Red;
+                labelL5Health.Update();
             }
 
-            if (!alpha.ListServers.Contains("L10"))
+            if (!alpha.ListServers.Contains("L6"))
             {
-                labelL10Health.Text = "● offline";
-                labelL10Health.ForeColor = System.Drawing.Color.Red;
-                labelL10Health.Update();
+                labelL6Health.Text = "● offline";
+                labelL6Health.ForeColor = System.Drawing.Color.Red;
+                labelL6Health.Update();
             }
 
             foreach (string server in alpha.ListServers)
@@ -218,6 +219,10 @@ namespace MC1
             textBoxModel.Update();
             textBoxMBSN.Text = "";
             textBoxMBSN.Update();
+            textBoxLoad.Text = "";
+            textBoxLoad.Update();
+            textBoxCpuGen.Text = "";
+            textBoxCpuGen.Update();
             textBoxLoc.Text = "";
             textBoxLoc.Update();
             textBoxStation.Text = "";
@@ -266,7 +271,10 @@ namespace MC1
             possibleReMFI.Clear();
             buttonReMFI.Enabled = false;
             buttonReMFI.BackColor = Color.FromArgb(255, 255, 255);
-
+            textBoxM4U.BackColor = Color.Empty;
+            textBoxM4U.Update();
+            textBoxLoad.BackColor = Color.Empty;
+            textBoxLoad.Update();
             textBoxNextStation.Text = "";
             textBoxNextStation.BackColor = Color.FromArgb(240, 240, 240);
             textBoxNextStation.Update();
@@ -481,6 +489,8 @@ namespace MC1
 
                 buttonClear.BackColor = Color.FromArgb(255, 255, 255);
                 StatusUpdate("Collecting " + input + " unit log data, please wait..");
+
+                firstFour = firstFour = input.Substring(0, 4);
                 foreach (var area in AreaList)
                 {
                     foreach (var server in ListWorkingServers)
@@ -783,14 +793,44 @@ namespace MC1
             string SN = inputBox2.Text;
             _history.Add(SN);
             labelHistory1.Text = _history[_history.Count - 1];
-            labelHistory2.Text = _history[_history.Count - 2];
-            labelHistory3.Text = _history[_history.Count - 3];
-            labelHistory4.Text = _history[_history.Count - 4];
-            labelHistory5.Text = _history[_history.Count - 5];
-            labelHistory6.Text = _history[_history.Count - 6];
-            labelHistory7.Text = _history[_history.Count - 7];
-            labelHistory8.Text = _history[_history.Count - 8];
-            labelHistory9.Text = _history[_history.Count - 9];
+            if (_history.Count > 2)
+            {
+                labelHistory2.Text = _history[_history.Count - 2];
+            }
+            if (_history.Count > 3)
+            {
+                labelHistory2.Text = _history[_history.Count - 2];
+            }
+            if (_history.Count > 4)
+            {
+                labelHistory3.Text = _history[_history.Count - 3];
+            }
+            if (_history.Count > 5)
+            {
+                labelHistory4.Text = _history[_history.Count - 4];
+            }
+               
+            if (_history.Count > 6)
+            {
+                labelHistory5.Text = _history[_history.Count - 5];
+            }
+            if (_history.Count > 7)
+            {
+                labelHistory6.Text = _history[_history.Count - 6];
+            }
+            if (_history.Count > 8)
+            {
+                labelHistory7.Text = _history[_history.Count - 7];
+            }
+            if (_history.Count > 9)
+            {
+                labelHistory8.Text = _history[_history.Count - 8];
+            }
+            if (_history.Count > 10)
+            {
+                labelHistory9.Text = _history[_history.Count - 9];
+            }
+
             if (checkBoxInfo.Checked == true)
             {
                 //UpdateTextBoxMenu(SN);
@@ -799,31 +839,84 @@ namespace MC1
             if (checkBoxTDS.Checked == true)
             {
                 TestInfo(SN, unitDatabaseData);
-
             }
 
-            string firstFour = SN.Substring(0, 4);
-            if (alpha.DictSnModel.ContainsKey(firstFour))
+            if (alpha.ListModelPrefix.Contains(firstFour))
             {
-                string model = alpha.DictSnModel[firstFour];
+                string model = alpha.GetdataFromModelTable(firstFour, "ModelName");
                 textBoxModel.Text = model;
                 textBoxModel.Update();
-            }
-            else
-            {
-                textBoxModel.Text = "Unknown Model";
-            }
-
-            if (alpha.DictSnMB.ContainsKey(firstFour))
-            {
-                string MBSN = alpha.DictSnMB[firstFour];
+                string MBSN = alpha.GetdataFromModelTable(firstFour, "MB_SN");
                 textBoxMBSN.Text = MBSN;
                 textBoxMBSN.Update();
+                string imageLoad = alpha.GetdataFromModelTable(firstFour, "ImageLoad");
+                textBoxLoad.Text = imageLoad;
+                if(imageLoad == "MFI")
+                {
+                    textBoxLoad.BackColor = Color.FromArgb(240, 235, 255);
+                    textBoxLoad.Update();
+                }
+
+                textBoxLoad.Update();
+                string cpuGen = alpha.GetdataFromModelTable(firstFour, "Category");
+                textBoxCpuGen.Text = cpuGen;
+                textBoxCpuGen.Update();
             }
             else
             {
+                textBoxLoad.Text = "Unknown SN";
+                textBoxLoad.Update();
+                textBoxCpuGen.Text = "Unknown SN";
+                textBoxCpuGen.Update();
+                textBoxModel.Text = "Unknown SN";
+                textBoxModel.Update();
                 textBoxMBSN.Text = "Unknown SN";
+                textBoxMBSN.Update();
             }
+
+            //string firstFour = SN.Substring(0, 4);
+            //if (alpha.DictSnModel.ContainsKey(firstFour))
+            //{
+            //    string model = alpha.DictSnModel[firstFour];
+            //    textBoxModel.Text = model;
+            //    textBoxModel.Update();
+            //}
+            //else
+            //{
+            //    textBoxModel.Text = "Unknown Model";
+            //    textBoxModel.Update();
+            //}
+
+            //if (alpha.DictSnMB.ContainsKey(firstFour))
+            //{
+            //    string MBSN = alpha.DictSnMB[firstFour];
+            //    textBoxMBSN.Text = MBSN;
+            //    textBoxMBSN.Update();
+            //}
+            //else
+            //{
+            //    textBoxMBSN.Text = "Unknown SN";
+            //    textBoxMBSN.Update();
+            //}
+
+            //if (alpha.DictSnMB.ContainsKey(firstFour))
+            //{
+            //    string imageLoad = alpha.GetdataFromModelTable(firstFour, "ImageLoad");
+            //    textBoxLoad.Text = imageLoad;
+            //    textBoxLoad.Update();
+
+            //    string cpuGen = alpha.GetdataFromModelTable(firstFour, "Category");
+            //    textBoxCpuGen.Text = cpuGen;
+            //    textBoxCpuGen.Update();
+            //}
+            //else
+            //{
+            //    textBoxLoad.Text = "Unknown SN";
+            //    textBoxLoad.Update();
+            //    textBoxCpuGen.Text = "Unknown SN";
+            //    textBoxCpuGen.Update();
+            //}
+
 
             bool underP4 = false;
             string progress = textBoxTDS_Progress.Text;
@@ -853,7 +946,7 @@ namespace MC1
 
         private void labelL1IP_Click(object sender, EventArgs e)
         {
-            string filePath = @"\\10.13.82.2\comm_uut";
+            string filePath = @"\\10.13.82.1\comm_uut";
             if (Directory.Exists(filePath))
             {
                 Process.Start(filePath);
@@ -867,7 +960,7 @@ namespace MC1
 
         private void labelL2IP_Click(object sender, EventArgs e)
         {
-            string filePath = @"\\10.13.82.3\comm_uut";
+            string filePath = @"\\10.13.82.2\comm_uut";
             if (Directory.Exists(filePath))
             {
                 Process.Start(filePath);
@@ -881,7 +974,7 @@ namespace MC1
 
         private void labelL3IP_Click(object sender, EventArgs e)
         {
-            string filePath = @"\\10.13.82.4\comm_uut";
+            string filePath = @"\\10.13.82.3\comm_uut";
             if (Directory.Exists(filePath))
             {
                 Process.Start(filePath);
@@ -893,44 +986,44 @@ namespace MC1
             }
         }
 
-        private void labelL8IP_Click(object sender, EventArgs e)
+        private void labelL5IP_Click(object sender, EventArgs e)
         {
-            string filePath = @"\\10.13.82.8\comm_uut";
+            string filePath = @"\\10.13.82.5\comm_uut";
             if (Directory.Exists(filePath))
             {
                 Process.Start(filePath);
             }
             else
             {
-                string status = "Cannot access Linehead 8";
+                string status = "Cannot access Linehead 5";
                 StatusUpdate(status);
             }
         }
 
-        private void labelLABIP_Click(object sender, EventArgs e)
+        private void labelL4IP_Click(object sender, EventArgs e)
         {
-            string filePath = @"\\10.13.82.200\comm_uut";
+            string filePath = @"\\10.13.82.4\comm_uut";
             if (Directory.Exists(filePath))
             {
                 Process.Start(filePath);
             }
             else
             {
-                string status = "Cannot access Linehead 200";
+                string status = "Cannot access Linehead 4";
                 StatusUpdate(status);
             }
         }
 
-        private void labelL10IP_Click(object sender, EventArgs e)
+        private void labelL6IP_Click(object sender, EventArgs e)
         {
-            string filePath = @"\\10.13.82.10\comm_uut";
+            string filePath = @"\\10.13.82.6\comm_uut";
             if (Directory.Exists(filePath))
             {
                 Process.Start(filePath);
             }
             else
             {
-                string status = "Cannot access Lineahead 10";
+                string status = "Cannot access Lineahead 6";
                 StatusUpdate(status);
             }
         }
@@ -979,30 +1072,30 @@ namespace MC1
             string labelName = label.Name;
 
             //serverPath
-            if (labelName.Contains("L10"))
+            if (labelName.Contains("L6"))
             {
-                serverPath = @"\\10.13.82.10\comm_uut\";
+                serverPath = @"\\10.13.82.6\comm_uut\";
             }
             else if (labelName.Contains("L2"))
             {
-                serverPath = @"\\10.13.82.3\comm_uut\";
+                serverPath = @"\\10.13.82.2\comm_uut\";
             }
             else if (labelName.Contains("L3"))
             {
+                serverPath = @"\\10.13.82.3\comm_uut\";
+            }
+            else if (labelName.Contains("L4"))
+            {
                 serverPath = @"\\10.13.82.4\comm_uut\";
             }
-            else if (labelName.Contains("LAB"))
+            else if (labelName.Contains("L5"))
             {
-                serverPath = @"\\10.13.82.200\comm_uut\";
-            }
-            else if (labelName.Contains("L8"))
-            {
-                serverPath = @"\\10.13.82.8\comm_uut\";
+                serverPath = @"\\10.13.82.5\comm_uut\";
             }
             // odsunuto pod L10 (L10 contains L1)
             else if (labelName.Contains("L1"))
             {
-                serverPath = @"\\10.13.82.2\comm_uut\";
+                serverPath = @"\\10.13.82.1\comm_uut\";
             }
             else
             {
@@ -1204,36 +1297,36 @@ namespace MC1
                 string pictureBoxName = pictureBox.Name;
 
                 //serverPath
-                if (pictureBoxName.Contains("L10"))
+                if (pictureBoxName.Contains("L1"))
                 {
-                    serverPath = @"\\10.13.82.10\comm_uut\Testresults\";
-                    pathLogBackupFolder = @"\\10.13.82.10\comm_uut\ADLOA3\";
+                    serverPath = @"\\10.13.82.1\comm_uut\Testresults\";
+                    pathLogBackupFolder = @"\\10.13.82.1\comm_uut\ADLOA3\";
                 }
                 else if (pictureBoxName.Contains("L2"))
+                {
+                    serverPath = @"\\10.13.82.2\comm_uut\Testresults\";
+                    pathLogBackupFolder = @"\\10.13.82.2\comm_uut\ADLOA3\";
+                }
+                else if (pictureBoxName.Contains("L3"))
                 {
                     serverPath = @"\\10.13.82.3\comm_uut\Testresults\";
                     pathLogBackupFolder = @"\\10.13.82.3\comm_uut\ADLOA3\";
                 }
-                else if (pictureBoxName.Contains("L3"))
+                else if (pictureBoxName.Contains("L4"))
                 {
                     serverPath = @"\\10.13.82.4\comm_uut\Testresults\";
                     pathLogBackupFolder = @"\\10.13.82.4\comm_uut\ADLOA3\";
                 }
-                else if (pictureBoxName.Contains("LAB"))
+                else if (pictureBoxName.Contains("L5"))
                 {
-                    serverPath = @"\\10.13.82.200\comm_uut\Testresults\";
-                    pathLogBackupFolder = @"\\10.13.82.200\comm_uut\ADLOA3\";
-                }
-                else if (pictureBoxName.Contains("L8"))
-                {
-                    serverPath = @"\\10.13.82.8\comm_uut\Testresults\";
-                    pathLogBackupFolder = @"\\10.13.82.8\comm_uut\ADLOA3\";
+                    serverPath = @"\\10.13.82.5\comm_uut\Testresults\";
+                    pathLogBackupFolder = @"\\10.13.82.5\comm_uut\ADLOA3\";
                 }
                 // odsunuto pod L10 (L10 contains L1)
-                else if (pictureBoxName.Contains("L1"))
+                else if (pictureBoxName.Contains("L6"))
                 {
-                    serverPath = @"\\10.13.82.2\comm_uut\Testresults\";
-                    pathLogBackupFolder = @"\\10.13.82.2\comm_uut\ADLOA3\";
+                    serverPath = @"\\10.13.82.6\comm_uut\Testresults\";
+                    pathLogBackupFolder = @"\\10.13.82.6\comm_uut\ADLOA3\";
                 }
                 else
                 {
@@ -1445,30 +1538,30 @@ namespace MC1
             string labelName = label.Name;
 
             //serverPath
-            if (labelName.Contains("L10"))
+            if (labelName.Contains("L6"))
             {
-                serverPath = @"\\10.13.82.10\comm_uut\ORDERDATA\";
+                serverPath = @"\\10.13.82.6\comm_uut\ORDERDATA\";
             }
             else if (labelName.Contains("L2"))
             {
-                serverPath = @"\\10.13.82.3\comm_uut\ORDERDATA\";
+                serverPath = @"\\10.13.82.2\comm_uut\ORDERDATA\";
             }
             else if (labelName.Contains("L3"))
             {
+                serverPath = @"\\10.13.82.3\comm_uut\ORDERDATA\";
+            }
+            else if (labelName.Contains("L4"))
+            {
                 serverPath = @"\\10.13.82.4\comm_uut\ORDERDATA\";
             }
-            else if (labelName.Contains("LAB"))
+            else if (labelName.Contains("L5"))
             {
-                serverPath = @"\\10.13.82.200\comm_uut\ORDERDATA\";
+                serverPath = @"\\10.13.82.5\comm_uut\ORDERDATA\";
             }
-            else if (labelName.Contains("L8"))
-            {
-                serverPath = @"\\10.13.82.8\comm_uut\ORDERDATA\";
-            }
-            // odsunuto pod L10 (L10 contains L1)
+            // odsunuto pod L6 (L6 contains L1)
             else if (labelName.Contains("L1"))
             {
-                serverPath = @"\\10.13.82.2\comm_uut\ORDERDATA\";
+                serverPath = @"\\10.13.82.1\comm_uut\ORDERDATA\";
             }
             else
             {
@@ -1539,6 +1632,10 @@ namespace MC1
                 Process.Start(pathToRemote);
                 if (alpha.accessLevel == "Engineer")
                 {
+                    if (Application.OpenForms.OfType<Form_PasswordTable>().Count() == 1)
+                    {
+                        Application.OpenForms.OfType<Form_PasswordTable>().First().Close();
+                    }
                     Form_PasswordTable formPWTable = new Form_PasswordTable(alpha);
                     formPWTable.Show();
                 }
@@ -1901,6 +1998,11 @@ namespace MC1
             string testToTextBox = unitDatabaseData.orderTestedUnits.ToString() + " / " + unitDatabaseData.orderUnitCount.ToString();
             textBoxPassToAll.Text = testToTextBox;
 
+            float progressValueFloat = (100 / (float)unitDatabaseData.orderUnitCount) * (float)unitDatabaseData.orderTestedUnits;
+            int progressValueInt = (Int32)Math.Round(progressValueFloat);
+            progressBarProgress.Value = progressValueInt;
+            progressBarProgress.Update();
+
             textBoxFamily.Text = unitDatabaseData.unitFamily;
             textBoxFamily.Update();
 
@@ -1945,6 +2047,11 @@ namespace MC1
             textBoxNextStation.Update();
 
             textBoxM4U.Text = unitDatabaseData.unitM4U_code;
+            if (textBoxM4U.Text != "No customization")
+            {
+                textBoxM4U.BackColor = Color.FromArgb(255, 187, 153);
+                textBoxM4U.Update();
+            }
             textBoxM4U.Update();
 
             //dataGridViewInternalDisks.DataSource = unitDatabaseData.dtInternalDisks;
@@ -2286,27 +2393,27 @@ namespace MC1
             string output;
             if (location.Contains("LINE1"))
             {
+                output = "10.13.82.1";
+            }
+            else if (location.Contains("LINE2"))
+            {
                 output = "10.13.82.2";
             }
-            else if (location.Contains("LINE2") || location.Contains("LINE3"))
+            else if (location.Contains("LINE3"))
             {
                 output = "10.13.82.3";
             }
-            else if (location.Contains("LINE4") || location.Contains("LINE7"))
+            else if (location.Contains("LINE4"))
             {
                 output = "10.13.82.4";
             }
-            else if (location.Contains("LINE5") || location.Contains("LINE6"))
+            else if (location.Contains("LINE5"))
             {
-                output = "10.13.82.200";
+                output = "10.13.82.5";
             }
-            else if (location.Contains("LINE8") || location.Contains("LINEDMR") || location.Contains("LINEOBA"))
+            else if (location.Contains("LINE6"))
             {
-                output = "10.13.82.8";
-            }
-            else if (location.Contains("LINEPRI"))
-            {
-                output = "10.13.82.10";
+                output = "10.13.82.6";
             }
             else
             {
@@ -2442,7 +2549,7 @@ namespace MC1
             {
                 alpha.InsertAction(alpha.userName, alpha.accessLevel, "Automatic update (Main)", "OK");
                 string appDomain = AppDomain.CurrentDomain.BaseDirectory;
-                System.Diagnostics.Process.Start(@"C:\TestTrack\Updater.exe", appDomain + " " + alpha.appVersion + " " + labelUpdateRequestVar.Text + " " + alpha.serverUserName + " " + alpha.lineheadLoginPasswords["LAB"]);
+                System.Diagnostics.Process.Start(@"C:\TestTrack\Updater.exe", appDomain + " " + alpha.appVersion + " " + labelUpdateRequestVar.Text + " " + alpha.serverUserName + " " + alpha.lineheadLoginPasswords["L4"]);
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
         }
@@ -2467,6 +2574,19 @@ namespace MC1
                 }
             }
         }
+
+        private void label_MouseEnter(object sender, EventArgs e)
+        {
+            var label = (Label)sender;
+            label.ForeColor = Color.Red;
+        }
+
+        private void label_MouseLeave(object sender, EventArgs e)
+        {
+            var label = (Label)sender;
+            label.ForeColor = Color.Black;
+        }
+
 
         //HISTORY LOG -------------------------------------------------------------------------------0
 
